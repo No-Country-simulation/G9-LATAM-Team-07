@@ -1,0 +1,22 @@
+# Java
+target/
+*.class
+
+# Python
+__pycache__/
+venv/
+*.pyc
+
+# Modelos y datos pesados (van a OCI Object Storage, NO al repo)
+*.joblib
+*.pkl
+
+# Credenciales y entorno
+.env
+config_oci
+*.pem
+
+# Sistema / editor
+.DS_Store
+.vscode/
+.idea/
