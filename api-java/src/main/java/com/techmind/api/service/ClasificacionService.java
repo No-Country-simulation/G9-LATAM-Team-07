@@ -3,6 +3,8 @@ package com.techmind.api.service;
 import com.techmind.api.dto.ContenidoRequest;
 import com.techmind.api.dto.ContenidoResponse;
 import com.techmind.api.dto.PythonResponse;
+import com.techmind.api.exceptions.ServicioInferenciaException;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 import java.util.List;
@@ -41,7 +43,7 @@ public class ClasificacionService {
                     pythonRaw.keywords()
             );
         } catch (Exception e) {
-            throw new RuntimeException("Error al conectar con el servicio de inferencia de IA");
+            throw new ServicioInferenciaException("Error al conectar con el servicio de inferencia de IA");
         }
     }
 }
