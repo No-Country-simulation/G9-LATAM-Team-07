@@ -35,8 +35,8 @@ public class ContenidoController {
         try {
             // 1. Armar el JSON con titulo y texto
             Map<String, String> body = new HashMap<>();
-            body.put("titulo", request.getTitulo());
-            body.put("texto", request.getTexto());
+            body.put("titulo", request.titulo());
+            body.put("texto", request.texto());
 
             // 2. Consumir el microservicio de Python
             PythonResponse pythonResponse = restTemplate.postForObject(

@@ -10,7 +10,7 @@ Esta API REST actúa como punto de entrada para el procesamiento y la clasificac
 
 Asegúrate de tener instalado:
 
-1. **Java JDK 17** (o superior).
+1. **Java JDK 25** (o superior).
 2. **Apache Maven**.
 3. **Postman** o cualquier cliente HTTP.
 
