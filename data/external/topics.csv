@@ -1,0 +1,44 @@
+﻿id,categoria,tecnologia,sitio_oficial,github,tutorial
+1,Backend,FastAPI,https://fastapi.tiangolo.com/,https://github.com/fastapi/fastapi,https://fastapi.tiangolo.com/tutorial/
+2,Backend,Django,https://docs.djangoproject.com/,https://github.com/django/django,https://docs.djangoproject.com/en/stable/intro/tutorial01/
+3,Backend,NestJS,https://docs.nestjs.com/,https://github.com/nestjs/nest,https://docs.nestjs.com/first-steps
+4,Frontend,React,https://react.dev/,https://github.com/facebook/react,https://react.dev/learn
+5,Frontend,Vue,https://vuejs.org/,https://github.com/vuejs/core,https://vuejs.org/guide/introduction.html
+6,Frontend,Angular,https://angular.dev/,https://github.com/angular/angular,https://angular.dev/tutorials
+7,Data Science,Pandas,https://pandas.pydata.org/docs/,https://github.com/pandas-dev/pandas,https://pandas.pydata.org/docs/user_guide/index.html
+8,Data Science,NumPy,https://numpy.org/doc/,https://github.com/numpy/numpy,https://numpy.org/doc/stable/user/
+9,Data Science,Scikit-learn,https://scikit-learn.org/stable/,https://github.com/scikit-learn/scikit-learn,https://scikit-learn.org/stable/user_guide.html
+10,Machine Learning,TensorFlow,https://www.tensorflow.org/,https://github.com/tensorflow/tensorflow,https://www.tensorflow.org/tutorials
+11,Machine Learning,PyTorch,https://pytorch.org/,https://github.com/pytorch/pytorch,https://pytorch.org/tutorials/
+12,Machine Learning,Hugging Face,https://huggingface.co/docs,https://github.com/huggingface,https://huggingface.co/learn
+13,DevOps,Docker,https://docs.docker.com/,https://github.com/docker,https://docs.docker.com/get-started/
+14,DevOps,Kubernetes,https://kubernetes.io/docs/,https://github.com/kubernetes,https://kubernetes.io/docs/tutorials/
+15,DevOps,GitHub Actions,https://docs.github.com/actions,https://github.com/actions,https://docs.github.com/actions/learn-github-actions
+16,Cloud,Oracle Cloud (OCI),https://docs.oracle.com/en/cloud/,https://github.com/oracle,https://docs.oracle.com/en/learn/oci-basics-tutorial/
+17,Cloud,AWS,https://docs.aws.amazon.com/,https://github.com/aws,https://aws.amazon.com/getting-started/
+18,Cloud,Azure,https://learn.microsoft.com/azure,https://github.com/Azure,https://learn.microsoft.com/training/azure/
+19,Bases de Datos,PostgreSQL,https://www.postgresql.org/docs/,https://github.com/postgres/postgres,https://www.postgresql.org/docs/current/tutorial.html
+20,Bases de Datos,MySQL,https://www.mysql.com/,https://github.com/mysql,https://www.mysqltutorial.org/
+21,Bases de Datos,MongoDB,https://www.mongodb.com/docs/,https://github.com/mongodb,https://learn.mongodb.com/
+22,Cybersecurity,OWASP,https://owasp.org/,https://github.com/OWASP,https://owasp.org/www-project-top-ten/
+23,Cybersecurity,NIST,https://www.nist.gov/cyberframework,https://github.com/usnistgov,https://www.nist.gov/cyberframework
+24,Cybersecurity,Kali Linux,https://www.kali.org/docs/,https://github.com/offensive-security,https://www.kali.org/docs/
+27,Bases de Datos,Redis,https://redis.io/docs/latest/,https://github.com/redis/redis,https://redis.io/docs/latest/develop/get-started/
+28,Bases de Datos,SQLite,https://www.sqlite.org/docs.html,https://github.com/sqlite/sqlite,https://www.sqlitetutorial.net/
+29,Bases de Datos,MariaDB,https://mariadb.com/docs/,https://github.com/MariaDB/server,https://mariadb.com/kb/en/getting-started/
+30,DevOps,Jenkins,https://www.jenkins.io/doc/,https://github.com/jenkinsci/jenkins,https://www.jenkins.io/doc/tutorials/
+31,DevOps,Terraform,https://developer.hashicorp.com/terraform/docs,https://github.com/hashicorp/terraform,https://developer.hashicorp.com/terraform/tutorials
+32,DevOps,Ansible,https://docs.ansible.com/,https://github.com/ansible/ansible,https://docs.ansible.com/ansible/latest/getting_started/
+33,DevOps,GitLab CI/CD,https://docs.gitlab.com/ee/ci/,https://gitlab.com/gitlab-org/gitlab,https://docs.gitlab.com/ee/ci/quick_start/
+34,Cybersecurity,Wireshark,https://www.wireshark.org/docs/,https://github.com/wireshark/wireshark,https://www.wireshark.org/docs/wsug_html_chunked/
+35,Cybersecurity,Metasploit,https://docs.metasploit.com/,https://github.com/rapid7/metasploit-framework,https://docs.metasploit.com/
+36,Cybersecurity,MITRE ATT&CK,https://attack.mitre.org/,https://github.com/mitre-attack/attack-stix-data,https://attack.mitre.org/resources/
+37,Cybersecurity,Burp Suite,https://portswigger.net/burp/documentation,https://github.com/PortSwigger,https://portswigger.net/web-security
+38,Frontend,Next.js,https://nextjs.org/docs,https://github.com/vercel/next.js,https://nextjs.org/learn
+39,Frontend,Svelte,https://svelte.dev/docs,https://github.com/sveltejs/svelte,https://svelte.dev/tutorial/
+40,Frontend,Astro,https://docs.astro.build/,https://github.com/withastro/astro,https://docs.astro.build/en/tutorial/
+41,Data Science,Matplotlib,https://matplotlib.org/stable/,https://github.com/matplotlib/matplotlib,https://matplotlib.org/stable/tutorials/
+42,Data Science,SciPy,https://docs.scipy.org/doc/scipy/,https://github.com/scipy/scipy,https://docs.scipy.org/doc/scipy/tutorial/
+43,Data Science,Jupyter,https://jupyter.org/documentation,https://github.com/jupyter/notebook,https://docs.jupyter.org/en/latest/
+44,Backend,Express.js,https://expressjs.com/,https://github.com/expressjs/express,https://expressjs.com/en/starter/installing.html
+45,Machine Learning,XGBoost,https://xgboost.readthedocs.io/,https://github.com/dmlc/xgboost,https://xgboost.readthedocs.io/en/stable/tutorials/

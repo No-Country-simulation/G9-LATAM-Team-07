@@ -1,0 +1,130 @@
+categoria,tecnologia,titulo,tipo,url,idioma
+Backend,FastAPI,FastAPI Official Docs,docs,https://fastapi.tiangolo.com/,en
+Backend,FastAPI,FastAPI GitHub,github,https://github.com/fastapi/fastapi,en
+Backend,FastAPI,FastAPI Tutorial,tutorial,https://fastapi.tiangolo.com/tutorial/,en
+Backend,Django,Django Official Docs,docs,https://docs.djangoproject.com/,en
+Backend,Django,Django GitHub,github,https://github.com/django/django,en
+Backend,Django,Django Tutorial,tutorial,https://docs.djangoproject.com/en/stable/intro/tutorial01/,en
+Backend,NestJS,NestJS Official Docs,docs,https://docs.nestjs.com/,en
+Backend,NestJS,NestJS GitHub,github,https://github.com/nestjs/nest,en
+Backend,NestJS,NestJS Tutorial,tutorial,https://docs.nestjs.com/first-steps,en
+Frontend,React,React Official Docs,docs,https://react.dev/,en
+Frontend,React,React GitHub,github,https://github.com/facebook/react,en
+Frontend,React,React Tutorial,tutorial,https://react.dev/learn,en
+Frontend,Vue,Vue Official Docs,docs,https://vuejs.org/,en
+Frontend,Vue,Vue GitHub,github,https://github.com/vuejs/core,en
+Frontend,Vue,Vue Tutorial,tutorial,https://vuejs.org/guide/introduction.html,en
+Frontend,Angular,Angular Official Docs,docs,https://angular.dev/,en
+Frontend,Angular,Angular GitHub,github,https://github.com/angular/angular,en
+Frontend,Angular,Angular Tutorial,tutorial,https://angular.dev/tutorials,en
+Data Science,Pandas,Pandas Official Docs,docs,https://pandas.pydata.org/docs/,en
+Data Science,Pandas,Pandas GitHub,github,https://github.com/pandas-dev/pandas,en
+Data Science,Pandas,Pandas Tutorial,tutorial,https://pandas.pydata.org/docs/user_guide/index.html,en
+Data Science,NumPy,NumPy Official Docs,docs,https://numpy.org/doc/,en
+Data Science,NumPy,NumPy GitHub,github,https://github.com/numpy/numpy,en
+Data Science,NumPy,NumPy Tutorial,tutorial,https://numpy.org/doc/stable/user/,en
+Data Science,Scikit-learn,Scikit-learn Official Docs,docs,https://scikit-learn.org/stable/,en
+Data Science,Scikit-learn,Scikit-learn GitHub,github,https://github.com/scikit-learn/scikit-learn,en
+Data Science,Scikit-learn,Scikit-learn Tutorial,tutorial,https://scikit-learn.org/stable/user_guide.html,en
+Machine Learning,TensorFlow,TensorFlow Official Docs,docs,https://www.tensorflow.org/,en
+Machine Learning,TensorFlow,TensorFlow GitHub,github,https://github.com/tensorflow/tensorflow,en
+Machine Learning,TensorFlow,TensorFlow Tutorial,tutorial,https://www.tensorflow.org/tutorials,en
+Machine Learning,PyTorch,PyTorch Official Docs,docs,https://pytorch.org/,en
+Machine Learning,PyTorch,PyTorch GitHub,github,https://github.com/pytorch/pytorch,en
+Machine Learning,PyTorch,PyTorch Tutorial,tutorial,https://pytorch.org/tutorials/,en
+Machine Learning,Hugging Face,Hugging Face Official Docs,docs,https://huggingface.co/docs,en
+Machine Learning,Hugging Face,Hugging Face GitHub,github,https://github.com/huggingface,en
+Machine Learning,Hugging Face,Hugging Face Tutorial,tutorial,https://huggingface.co/learn,en
+DevOps,Docker,Docker Official Docs,docs,https://docs.docker.com/,en
+DevOps,Docker,Docker GitHub,github,https://github.com/docker,en
+DevOps,Docker,Docker Tutorial,tutorial,https://docs.docker.com/get-started/,en
+DevOps,Kubernetes,Kubernetes Official Docs,docs,https://kubernetes.io/docs/,en
+DevOps,Kubernetes,Kubernetes GitHub,github,https://github.com/kubernetes,en
+DevOps,Kubernetes,Kubernetes Tutorial,tutorial,https://kubernetes.io/docs/tutorials/,en
+DevOps,GitHub Actions,GitHub Actions Official Docs,docs,https://docs.github.com/actions,en
+DevOps,GitHub Actions,GitHub Actions GitHub,github,https://github.com/actions,en
+DevOps,GitHub Actions,GitHub Actions Tutorial,tutorial,https://docs.github.com/actions/learn-github-actions,en
+Cloud,Oracle Cloud (OCI),Oracle Cloud (OCI) Official Docs,docs,https://docs.oracle.com/en/cloud/,en
+Cloud,Oracle Cloud (OCI),Oracle Cloud (OCI) GitHub,github,https://github.com/oracle,en
+Cloud,Oracle Cloud (OCI),Oracle Cloud (OCI) Tutorial,tutorial,https://docs.oracle.com/en/learn/oci-basics-tutorial/,en
+Cloud,AWS,AWS Official Docs,docs,https://docs.aws.amazon.com/,en
+Cloud,AWS,AWS GitHub,github,https://github.com/aws,en
+Cloud,AWS,AWS Tutorial,tutorial,https://aws.amazon.com/getting-started/,en
+Cloud,Azure,Azure Official Docs,docs,https://learn.microsoft.com/azure,en
+Cloud,Azure,Azure GitHub,github,https://github.com/Azure,en
+Cloud,Azure,Azure Tutorial,tutorial,https://learn.microsoft.com/training/azure/,en
+Bases de Datos,PostgreSQL,PostgreSQL Official Docs,docs,https://www.postgresql.org/docs/,en
+Bases de Datos,PostgreSQL,PostgreSQL GitHub,github,https://github.com/postgres/postgres,en
+Bases de Datos,PostgreSQL,PostgreSQL Tutorial,tutorial,https://www.postgresql.org/docs/current/tutorial.html,en
+Bases de Datos,MySQL,MySQL Official Docs,docs,https://www.mysql.com/,en
+Bases de Datos,MySQL,MySQL GitHub,github,https://github.com/mysql,en
+Bases de Datos,MySQL,MySQL Tutorial,tutorial,https://www.mysqltutorial.org/,en
+Bases de Datos,MongoDB,MongoDB Official Docs,docs,https://www.mongodb.com/docs/,en
+Bases de Datos,MongoDB,MongoDB GitHub,github,https://github.com/mongodb,en
+Bases de Datos,MongoDB,MongoDB Tutorial,tutorial,https://learn.mongodb.com/,en
+Cybersecurity,OWASP,OWASP Official Docs,docs,https://owasp.org/,en
+Cybersecurity,OWASP,OWASP GitHub,github,https://github.com/OWASP,en
+Cybersecurity,OWASP,OWASP Tutorial,tutorial,https://owasp.org/www-project-top-ten/,en
+Cybersecurity,NIST,NIST Official Docs,docs,https://www.nist.gov/cyberframework,en
+Cybersecurity,NIST,NIST GitHub,github,https://github.com/usnistgov,en
+Cybersecurity,NIST,NIST Tutorial,tutorial,https://www.nist.gov/cyberframework,en
+Cybersecurity,Kali Linux,Kali Linux Official Docs,docs,https://www.kali.org/docs/,en
+Cybersecurity,Kali Linux,Kali Linux GitHub,github,https://github.com/offensive-security,en
+Cybersecurity,Kali Linux,Kali Linux Tutorial,tutorial,https://www.kali.org/docs/,en
+Bases de Datos,Redis,Redis Official Docs,docs,https://redis.io/docs/latest/,en
+Bases de Datos,Redis,Redis GitHub,github,https://github.com/redis/redis,en
+Bases de Datos,Redis,Redis Tutorial,tutorial,https://redis.io/docs/latest/develop/get-started/,en
+Bases de Datos,SQLite,SQLite Official Docs,docs,https://www.sqlite.org/docs.html,en
+Bases de Datos,SQLite,SQLite GitHub,github,https://github.com/sqlite/sqlite,en
+Bases de Datos,SQLite,SQLite Tutorial,tutorial,https://www.sqlitetutorial.net/,en
+Bases de Datos,MariaDB,MariaDB Official Docs,docs,https://mariadb.com/docs/,en
+Bases de Datos,MariaDB,MariaDB GitHub,github,https://github.com/MariaDB/server,en
+Bases de Datos,MariaDB,MariaDB Tutorial,tutorial,https://mariadb.com/kb/en/getting-started/,en
+DevOps,Jenkins,Jenkins Official Docs,docs,https://www.jenkins.io/doc/,en
+DevOps,Jenkins,Jenkins GitHub,github,https://github.com/jenkinsci/jenkins,en
+DevOps,Jenkins,Jenkins Tutorial,tutorial,https://www.jenkins.io/doc/tutorials/,en
+DevOps,Terraform,Terraform Official Docs,docs,https://developer.hashicorp.com/terraform/docs,en
+DevOps,Terraform,Terraform GitHub,github,https://github.com/hashicorp/terraform,en
+DevOps,Terraform,Terraform Tutorial,tutorial,https://developer.hashicorp.com/terraform/tutorials,en
+DevOps,Ansible,Ansible Official Docs,docs,https://docs.ansible.com/,en
+DevOps,Ansible,Ansible GitHub,github,https://github.com/ansible/ansible,en
+DevOps,Ansible,Ansible Tutorial,tutorial,https://docs.ansible.com/ansible/latest/getting_started/,en
+DevOps,GitLab CI/CD,GitLab CI/CD Official Docs,docs,https://docs.gitlab.com/ee/ci/,en
+DevOps,GitLab CI/CD,GitLab CI/CD GitHub,github,https://gitlab.com/gitlab-org/gitlab,en
+DevOps,GitLab CI/CD,GitLab CI/CD Tutorial,tutorial,https://docs.gitlab.com/ee/ci/quick_start/,en
+Cybersecurity,Wireshark,Wireshark Official Docs,docs,https://www.wireshark.org/docs/,en
+Cybersecurity,Wireshark,Wireshark GitHub,github,https://github.com/wireshark/wireshark,en
+Cybersecurity,Wireshark,Wireshark Tutorial,tutorial,https://www.wireshark.org/docs/wsug_html_chunked/,en
+Cybersecurity,Metasploit,Metasploit Official Docs,docs,https://docs.metasploit.com/,en
+Cybersecurity,Metasploit,Metasploit GitHub,github,https://github.com/rapid7/metasploit-framework,en
+Cybersecurity,Metasploit,Metasploit Tutorial,tutorial,https://docs.metasploit.com/,en
+Cybersecurity,MITRE ATT&CK,MITRE ATT&CK Official Docs,docs,https://attack.mitre.org/,en
+Cybersecurity,MITRE ATT&CK,MITRE ATT&CK GitHub,github,https://github.com/mitre-attack/attack-stix-data,en
+Cybersecurity,MITRE ATT&CK,MITRE ATT&CK Tutorial,tutorial,https://attack.mitre.org/resources/,en
+Cybersecurity,Burp Suite,Burp Suite Official Docs,docs,https://portswigger.net/burp/documentation,en
+Cybersecurity,Burp Suite,Burp Suite GitHub,github,https://github.com/PortSwigger,en
+Cybersecurity,Burp Suite,Burp Suite Tutorial,tutorial,https://portswigger.net/web-security,en
+Frontend,Next.js,Next.js Official Docs,docs,https://nextjs.org/docs,en
+Frontend,Next.js,Next.js GitHub,github,https://github.com/vercel/next.js,en
+Frontend,Next.js,Next.js Tutorial,tutorial,https://nextjs.org/learn,en
+Frontend,Svelte,Svelte Official Docs,docs,https://svelte.dev/docs,en
+Frontend,Svelte,Svelte GitHub,github,https://github.com/sveltejs/svelte,en
+Frontend,Svelte,Svelte Tutorial,tutorial,https://svelte.dev/tutorial/,en
+Frontend,Astro,Astro Official Docs,docs,https://docs.astro.build/,en
+Frontend,Astro,Astro GitHub,github,https://github.com/withastro/astro,en
+Frontend,Astro,Astro Tutorial,tutorial,https://docs.astro.build/en/tutorial/,en
+Data Science,Matplotlib,Matplotlib Official Docs,docs,https://matplotlib.org/stable/,en
+Data Science,Matplotlib,Matplotlib GitHub,github,https://github.com/matplotlib/matplotlib,en
+Data Science,Matplotlib,Matplotlib Tutorial,tutorial,https://matplotlib.org/stable/tutorials/,en
+Data Science,SciPy,SciPy Official Docs,docs,https://docs.scipy.org/doc/scipy/,en
+Data Science,SciPy,SciPy GitHub,github,https://github.com/scipy/scipy,en
+Data Science,SciPy,SciPy Tutorial,tutorial,https://docs.scipy.org/doc/scipy/tutorial/,en
+Data Science,Jupyter,Jupyter Official Docs,docs,https://jupyter.org/documentation,en
+Data Science,Jupyter,Jupyter GitHub,github,https://github.com/jupyter/notebook,en
+Data Science,Jupyter,Jupyter Tutorial,tutorial,https://docs.jupyter.org/en/latest/,en
+Backend,Express.js,Express.js Official Docs,docs,https://expressjs.com/,en
+Backend,Express.js,Express.js GitHub,github,https://github.com/expressjs/express,en
+Backend,Express.js,Express.js Tutorial,tutorial,https://expressjs.com/en/starter/installing.html,en
+Machine Learning,XGBoost,XGBoost Official Docs,docs,https://xgboost.readthedocs.io/,en
+Machine Learning,XGBoost,XGBoost GitHub,github,https://github.com/dmlc/xgboost,en
+Machine Learning,XGBoost,XGBoost Tutorial,tutorial,https://xgboost.readthedocs.io/en/stable/tutorials/,en
