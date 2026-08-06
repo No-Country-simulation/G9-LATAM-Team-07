@@ -18,29 +18,36 @@ import jakarta.servlet.http.HttpServletRequest;
 @RestControllerAdvice
 public class GestorDeErrores {
 
-    //parametros vacios o faltantes
+    // Parametros vacios, faltantes o reglas de validacion (@AssertTrue, @NotBlank, etc.)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<DatosError> gestionarError400(
             MethodArgumentNotValidException ex,
             HttpServletRequest request) {
 
-        var errores = ex.getFieldErrors()
-            .stream()
-            .map(DatosError400Detalles::new)
-            .toList();
+        var errores = ex.getBindingResult().getAllErrors()
+                .stream()
+                .map(error -> {
+                    if (error instanceof FieldError fieldError) {
+                        return new DatosError400Detalles(fieldError.getField(), fieldError.getDefaultMessage());
+                    } else {
+                        // Captura errores a nivel de objeto/método como @AssertTrue
+                        return new DatosError400Detalles(error.getObjectName(), error.getDefaultMessage());
+                    }
+                })
+                .toList();
 
         return ResponseEntity.badRequest().body(
-            new DatosError(
-                HttpStatus.BAD_REQUEST,
-                "Error de validación",
-                request.getRequestURI(),
-                errores
-            )
+                new DatosError(
+                        HttpStatus.BAD_REQUEST,
+                        "Error de validación",
+                        request.getRequestURI(),
+                        errores
+                )
         );
     }
 
 
-    //peticion sin body
+    // Peticion sin body
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<DatosError> gestionarError400(
             HttpMessageNotReadableException ex,
@@ -48,29 +55,29 @@ public class GestorDeErrores {
 
         return ResponseEntity.badRequest()
                 .body(new DatosError(
-                    HttpStatus.BAD_REQUEST,
-                    "El cuerpo de la petición es obligatorio",
-                    request.getRequestURI()
+                        HttpStatus.BAD_REQUEST,
+                        "El cuerpo de la petición es obligatorio",
+                        request.getRequestURI()
                 ));
     }
 
 
-    //entidad no encontrada en la aplicación
+    // Entidad no encontrada en la aplicación
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<DatosError> gestionarError404(
             EntityNotFoundException ex,
             HttpServletRequest request) {
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
-            .body(new DatosError(
-                HttpStatus.NOT_FOUND,
-                "Contenido no encontrado",
-                request.getRequestURI()
-            ));
+                .body(new DatosError(
+                        HttpStatus.NOT_FOUND,
+                        "Contenido no encontrado",
+                        request.getRequestURI()
+                ));
     }
 
 
-    //endpoint o recurso HTTP no encontrado
+    // Endpoint o recurso HTTP no encontrado
     @ExceptionHandler(NoResourceFoundException.class)
     public ResponseEntity<DatosError> gestionarError404Recurso(
             NoResourceFoundException ex,
@@ -78,59 +85,59 @@ public class GestorDeErrores {
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(new DatosError(
-                    HttpStatus.NOT_FOUND,
-                    "Endpoint o recurso HTTP no encontrado",
-                    request.getRequestURI()
+                        HttpStatus.NOT_FOUND,
+                        "Endpoint o recurso HTTP no encontrado",
+                        request.getRequestURI()
                 ));
     }
 
 
-    //metodo o verbo HTTP no permitido 
+    // Metodo o verbo HTTP no permitido
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     public ResponseEntity<DatosError> gestionarError405(
             HttpRequestMethodNotSupportedException ex,
             HttpServletRequest request) {
 
         return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED)
-            .body(new DatosError(
-                HttpStatus.METHOD_NOT_ALLOWED,
-                ex.getMessage(),
-                request.getRequestURI()
-            ));
+                .body(new DatosError(
+                        HttpStatus.METHOD_NOT_ALLOWED,
+                        ex.getMessage(),
+                        request.getRequestURI()
+                ));
     }
 
 
-    //Cuerpo o body no soportado
+    // Cuerpo o body no soportado
     @ExceptionHandler(HttpMediaTypeNotSupportedException.class)
     public ResponseEntity<DatosError> gestionarError415(
             HttpMediaTypeNotSupportedException ex,
             HttpServletRequest request) {
 
         return ResponseEntity.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE)
-            .body(new DatosError(
-                HttpStatus.UNSUPPORTED_MEDIA_TYPE,
-                "Formato de contenido no soportado",//ex.getMessage(),
-                request.getRequestURI()
-            ));
+                .body(new DatosError(
+                        HttpStatus.UNSUPPORTED_MEDIA_TYPE,
+                        "Formato de contenido no soportado",
+                        request.getRequestURI()
+                ));
     }
 
 
-    //servicio externo no disponible
+    // Servicio externo no disponible
     @ExceptionHandler(ServicioInferenciaException.class)
     public ResponseEntity<DatosError> gestionarError503(
             ServicioInferenciaException ex,
             HttpServletRequest request) {
 
         return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
-            .body(new DatosError(
-                HttpStatus.SERVICE_UNAVAILABLE,
-                "Servicio de clasificación no disponible",
-                request.getRequestURI()
-            ));
+                .body(new DatosError(
+                        HttpStatus.SERVICE_UNAVAILABLE,
+                        "Servicio de clasificación no disponible",
+                        request.getRequestURI()
+                ));
     }
 
 
-    //errores no controlados
+    // Errores no controlados
     @ExceptionHandler(Exception.class)
     public ResponseEntity<DatosError> gestionarError500(
             Exception ex,
@@ -145,23 +152,23 @@ public class GestorDeErrores {
     }
 
 
-    //Datos de errores uniforme
+    // Datos de errores uniforme
     public record DatosError(
-        OffsetDateTime timestamp,
-        int status,
-        String error,
-        String message,
-        String path,
-        Object detalles
+            OffsetDateTime timestamp,
+            int status,
+            String error,
+            String message,
+            String path,
+            Object detalles
     ) {
         public DatosError(HttpStatus status, String message, String path, Object detalles) {
             this(
-                OffsetDateTime.now(),
-                status.value(),
-                status.getReasonPhrase(),
-                message,
-                path,
-                detalles
+                    OffsetDateTime.now(),
+                    status.value(),
+                    status.getReasonPhrase(),
+                    message,
+                    path,
+                    detalles
             );
         }
 
@@ -171,10 +178,10 @@ public class GestorDeErrores {
     }
 
 
-    //Campos faltantes
+    // Campos o validaciones fallidas
     public record DatosError400Detalles(
-        String campo, 
-        String mensaje){
+            String campo,
+            String mensaje){
         public DatosError400Detalles(FieldError error){
             this(error.getField(), error.getDefaultMessage());
         }
