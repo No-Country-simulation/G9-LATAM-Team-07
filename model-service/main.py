@@ -1,7 +1,8 @@
 import os
 import logging
 import urllib.request
-from typing import Optional
+import re
+from typing import Optional, List, Dict, Any
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import joblib
@@ -16,14 +17,20 @@ app = FastAPI(
     version="1.0.0"
 )
 
-MODEL_PATH = "modelo_v1.joblib"
+# Modelo V2 desde OCI Object Storage
+MODEL_PATH = "modelo_v2.joblib"
 OCI_PAR_URL = os.getenv(
     "OCI_PAR_URL",
-    "https://objectstorage.sa-santiago-1.oraclecloud.com/p/V0vT6MGLrTvITktjAIxo4hxjyBqRKFlxPB6eRffxdSHJe7yE7UEcCe8Lve3FOPI7/n/axt0oymbmmin/b/techmind-datasets/o/models/modelo_v1.joblibmodelo_v1.joblib"
+    "https://objectstorage.sa-santiago-1.oraclecloud.com/p/V0vT6MGLrTvITktjAIxo4hxjyBqRKFlxPB6eRffxdSHJe7yE7UEcCe8Lve3FOPI7/n/axt0oymbmmin/b/techmind-datasets/o/models/modelo_v2.joblib"
 )
 
 # ---------------------------------------------------------
-# Conectores y Stopwords (Español e Inglés)
+# Base de datos en memoria para almacenamiento temporal
+# ---------------------------------------------------------
+db_contenidos: List[Dict[str, Any]] = []
+
+# ---------------------------------------------------------
+# Stopwords (Español e Inglés)
 # ---------------------------------------------------------
 STOPWORDS_ES = [
     "de", "la", "que", "el", "en", "y", "a", "los", "del", "se", "las", "por", "un", "para", "con", "no", 
@@ -61,7 +68,7 @@ model = None
 
 
 def download_model(force_redownload: bool = True):
-    """Descarga el modelo desde OCI Object Storage."""
+    """Descarga modelo_v2.joblib desde OCI."""
     global MODEL_PATH, OCI_PAR_URL
 
     if force_redownload and os.path.exists(MODEL_PATH):
@@ -89,7 +96,7 @@ def download_model(force_redownload: bool = True):
 
 @app.on_event("startup")
 def load_model():
-    """Evento de inicio: descarga el modelo y lo carga en memoria."""
+    """Descarga e inicializa el modelo al arrancar el contenedor."""
     global model
     try:
         download_model(force_redownload=True)
@@ -106,11 +113,27 @@ class PredictionInput(BaseModel):
 
 
 def preprocess_text(text: str) -> str:
-    """Elimina conectores/stopwords en español e inglés."""
+    """Elimina stopwords en español e inglés."""
     words = text.lower().split()
     filtered_words = [w for w in words if w not in ALL_STOPWORDS]
     return " ".join(filtered_words)
 
+
+def extract_keywords(text: str, top_n: int = 5) -> List[str]:
+    """Extrae palabras clave descartando las stopwords."""
+    words = re.findall(r'\b[a-zA-Z]{3,}\b', text.lower())
+    keywords = []
+    for word in words:
+        if word not in ALL_STOPWORDS and word not in keywords:
+            keywords.append(word)
+        if len(keywords) == top_n:
+            break
+    return keywords or ["contenido", "general"]
+
+
+# ---------------------------------------------------------
+# ENDPOINTS GET
+# ---------------------------------------------------------
 
 @app.get("/")
 def read_root():
@@ -120,7 +143,29 @@ def read_root():
     }
 
 
+@app.get("/contenido")
+def get_todos_los_contenidos():
+    """Obtiene todos los contenidos guardados."""
+    return db_contenidos
+
+
+@app.get("/contenido/categoria/{categoria}")
+@app.get("/categoria/{categoria}")
+def get_contenidos_por_categoria(categoria: str):
+    """Filtra y obtiene los contenidos por su etiqueta/categoría."""
+    resultados = [
+        item for item in db_contenidos 
+        if item.get("label", "").lower() == categoria.lower()
+    ]
+    return resultados
+
+
+# ---------------------------------------------------------
+# ENDPOINTS POST (PREDICCIÓN)
+# ---------------------------------------------------------
+
 @app.post("/predict")
+@app.post("/contenido")
 def predict(data: PredictionInput):
     if model is None:
         raise HTTPException(
@@ -129,11 +174,39 @@ def predict(data: PredictionInput):
         )
     
     try:
-        raw_text = f"{data.titulo} {data.texto}".strip()
+        raw_text = f"{data.titulo or ''} {data.texto or ''}".strip()
         cleaned_text = preprocess_text(raw_text)
         
-        prediction = model.predict([cleaned_text])
-        return {"prediction": prediction.tolist()}
+        # Transformación del texto con el vectorizador del dict de joblib
+        if isinstance(model, dict):
+            vectorizer = model['vectorizer']
+            clf = model['model']
+            text_vec = vectorizer.transform([cleaned_text])
+            prediction = clf.predict(text_vec)
+        else:
+            prediction = model.predict([cleaned_text])
+
+        categoria = str(prediction[0])
+        keywords = extract_keywords(raw_text)
+
+        # Estructura del resultado
+        resultado = {
+            "titulo": data.titulo,
+            "texto": data.texto,
+            "label": categoria,
+            "confidence": 1.0,
+            "keywords": keywords
+        }
+
+        # Guardar en almacenamiento temporal
+        db_contenidos.append(resultado)
+
+        # Mapeo de respuesta para Java PythonResponse
+        return {
+            "label": categoria,
+            "confidence": 1.0,
+            "keywords": keywords
+        }
     except Exception as e:
         logger.error(f"Error al procesar la predicción: {e}")
         raise HTTPException(status_code=400, detail=f"Error en la predicción: {str(e)}")
