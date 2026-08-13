@@ -4,18 +4,30 @@ import urllib.request
 import re
 from typing import Optional, List, Dict, Any
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 import joblib
 
 # Configuración de logs
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("predict-service")
 
+TAGS = [
+    {"name": "Predicción", "description": "Clasifica un texto técnico."},
+    {"name": "Consulta", "description": "Contenidos ya clasificados."},
+    {"name": "Estado", "description": "Estado del servicio."},
+]
+
 app = FastAPI(
-    title="Predict Service API",
-    description="Microservicio de predicción consumiendo el modelo desde OCI Object Storage",
-    version="1.0.0"
+    title="TechMind - Predict Service",
+    description=(
+        "Clasifica contenido técnico en ocho categorías, "
+        "Backend, Frontend, Data Science, Machine Learning, DevOps, "
+        "Cloud, Cybersecurity y Bases de Datos."
+    ),
+    version="1.0.0",
+    openapi_tags=TAGS,
 )
+
 
 # Modelo V2 desde OCI Object Storage
 MODEL_PATH = "modelo_v2.joblib"
@@ -108,8 +120,41 @@ def load_model():
 
 
 class PredictionInput(BaseModel):
-    titulo: Optional[str] = ""
-    texto: str
+    titulo: Optional[str] = Field(
+        "",
+        description="Título del contenido. Es opcional, se concatena al texto antes de clasificar.",
+        examples=["Payment service deployment runbook"]
+    )
+    texto: str = Field(
+        ...,
+        description="Texto a clasificar.",
+        examples=["Steps to roll out the payment service: build the docker image and run the pipeline."]
+    )
+
+
+class PredictionOutput(BaseModel):
+    label: str = Field(
+        description="Categoría detectada por el modelo.",
+        examples=["DevOps"]
+    )
+    confidence: float = Field(
+        description=(
+            "Confianza de la predicción, de 0 a 1. "
+            "Hoy el servicio devuelve siempre 1.0, falta conectar predict_proba del modelo."
+        ),
+        examples=[1.0]
+    )
+    keywords: List[str] = Field(
+        description="Hasta 5 palabras clave extraídas del texto, sin stopwords.",
+        examples=[["payment", "docker", "pipeline"]]
+    )
+
+
+class ErrorResponse(BaseModel):
+    detail: str = Field(
+        examples=["El modelo no está disponible o no se cargó correctamente."]
+    )
+
 
 
 def preprocess_text(text: str) -> str:
@@ -135,7 +180,7 @@ def extract_keywords(text: str, top_n: int = 5) -> List[str]:
 # ENDPOINTS GET
 # ---------------------------------------------------------
 
-@app.get("/")
+@app.get("/", tags=["Estado"], summary="Estado del servicio")
 def read_root():
     return {
         "service": "predict-service",
@@ -143,14 +188,14 @@ def read_root():
     }
 
 
-@app.get("/contenido")
+@app.get("/contenido", tags=["Consulta"], summary="Lista todo lo clasificado")
 def get_todos_los_contenidos():
     """Obtiene todos los contenidos guardados."""
     return db_contenidos
 
 
-@app.get("/contenido/categoria/{categoria}")
-@app.get("/categoria/{categoria}")
+@app.get("/contenido/categoria/{categoria}", tags=["Consulta"], summary="Filtra por categoría")
+@app.get("/categoria/{categoria}", include_in_schema=False)
 def get_contenidos_por_categoria(categoria: str):
     """Filtra y obtiene los contenidos por su etiqueta/categoría."""
     resultados = [
@@ -164,8 +209,17 @@ def get_contenidos_por_categoria(categoria: str):
 # ENDPOINTS POST (PREDICCIÓN)
 # ---------------------------------------------------------
 
-@app.post("/predict")
-@app.post("/contenido")
+@app.post(
+    "/predict",
+    response_model=PredictionOutput,
+    tags=["Predicción"],
+    summary="Clasifica un texto",
+    responses={
+        400: {"model": ErrorResponse, "description": "Error al procesar la predicción"},
+        503: {"model": ErrorResponse, "description": "El modelo no está cargado"},
+    },
+)
+@app.post("/contenido", response_model=PredictionOutput, include_in_schema=False)
 def predict(data: PredictionInput):
     if model is None:
         raise HTTPException(
