@@ -1,6 +1,7 @@
 package com.techmind.api.model;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "contenidos")
@@ -16,15 +17,24 @@ public class Contenido {
     private String texto;
 
     private String categoria;
+    
     private Double probabilidad;
 
-    public Contenido() {}
+    private String informacionAdicional;
 
-    public Contenido(String titulo, String texto, String categoria, Double probabilidad) {
+    private LocalDateTime fechaRegistro;
+
+    public Contenido() {
+        this.fechaRegistro = LocalDateTime.now();
+    }
+
+    public Contenido(String titulo, String texto, String categoria, Double probabilidad, String informacionAdicional) {
         this.titulo = titulo;
         this.texto = texto;
         this.categoria = categoria;
         this.probabilidad = probabilidad;
+        this.informacionAdicional = informacionAdicional;
+        this.fechaRegistro = LocalDateTime.now();
     }
 
     // Getters y Setters
@@ -42,4 +52,10 @@ public class Contenido {
 
     public Double getProbabilidad() { return probabilidad; }
     public void setProbabilidad(Double probabilidad) { this.probabilidad = probabilidad; }
+
+    public String getInformacionAdicional() { return informacionAdicional; }
+    public void setInformacionAdicional(String informacionAdicional) { this.informacionAdicional = informacionAdicional; }
+
+    public LocalDateTime getFechaRegistro() { return fechaRegistro; }
+    public void setFechaRegistro(LocalDateTime fechaRegistro) { this.fechaRegistro = fechaRegistro; }
 }
