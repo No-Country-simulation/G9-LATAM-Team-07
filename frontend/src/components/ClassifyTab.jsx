@@ -136,7 +136,7 @@ export default function ClassifyTab() {
           <select 
             value={categoriaFiltro}
             onChange={(e) => setCategoriaFiltro(e.target.value)}
-            className="bg-[#111726] border border-gray-800 text-gray-300 text-sm rounded-lg px-3 py-1.5 focus:outline-none"
+            className="cursor-pointer bg-[#111726] border border-gray-800 text-gray-300 text-sm rounded-lg px-3 py-1.5 focus:outline-none"
           >
             <option value="">All categories</option>
             <option value="Backend">Backend</option>

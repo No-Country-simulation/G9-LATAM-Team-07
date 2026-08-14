@@ -22,7 +22,7 @@ export default function App() {
         <div className="bg-[#111726] p-1 rounded-full border border-gray-800 flex items-center gap-1">
           <button
             onClick={() => setActiveTab('classify')}
-            className={`px-5 py-1.5 rounded-full text-xs font-semibold transition ${
+            className={`cursor-pointer px-5 py-1.5 rounded-full text-xs font-semibold transition ${
               activeTab === 'classify'
                 ? 'bg-gradient-to-r from-blue-500 to-emerald-400 text-slate-950 shadow-md'
                 : 'text-gray-400 hover:text-white'
@@ -33,7 +33,7 @@ export default function App() {
           
           <button
             onClick={() => setActiveTab('ask')}
-            className={`px-4 py-1.5 rounded-full text-xs font-semibold flex items-center gap-2 transition ${
+            className={`cursor-pointer px-4 py-1.5 rounded-full text-xs font-semibold flex items-center gap-2 transition ${
               activeTab === 'ask'
                 ? 'bg-gradient-to-r from-blue-500 to-emerald-400 text-slate-950 shadow-md'
                 : 'text-gray-400 hover:text-white'
