@@ -1,8 +1,5 @@
-// Usa localhost mientras desarrollas en tu PC:
-// const API_BASE_URL = 'http://localhost:8080'; 
+const API_BASE_URL = import.meta.env.PROD ? '/api' : 'http://146.181.61.160:8080';
 
-// URL de OCI para cuando el despliegue esté verificado:
-const API_BASE_URL = 'http://146.181.61.160:8080';
 export const clasificarContenido = async (titulo, texto) => {
   const response = await fetch(`${API_BASE_URL}/contenido`, {
     method: 'POST',
